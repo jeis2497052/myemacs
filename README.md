@@ -1,5 +1,41 @@
-# myemacs
-Useful emacs settings
+# myemacs from summer 2018 with prelude
+
+```
+(global-set-key (kbd "<f2>") 'eshell)
+(global-set-key (kbd "<f5>") 'shell)
+(defun kill-default-buffer ()
+  "Kill buffer without prompt"
+  (interactive)
+  (let (kill-buffer-query-functions) (kill-buffer)))
+
+(global-set-key (kbd "C-x k") 'kill-default-buffer)
+(set-scroll-bar-mode 'nil)
+;;;(setq electric-pair-mode 'enabled)
+(electric-pair-mode 1)
+(blink-cursor-mode 1)
+
+
+;; This is needed to allow msmtp to do its magic:
+(setq message-sendmail-f-is-evil 't)
+
+;;need to tell msmtp which account we're using
+(setq message-sendmail-extra-arguments '("--read-envelope-from"))
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+;; we substitute sendmail with msmtp
+(setq sendmail-program "/usr/bin/msmtp")
+;;need to tell msmtp which account we're using
+(setq message-sendmail-extra-arguments '("-a" "john.eismeier"))
+;; you might want to set the following too
+(setq mail-host-address "gmail.com")
+(setq user-full-name "John E")
+(setq user-mail-address "john.eismeier@gmail.com")
+
+```
+
+
+
+#Useful emacs settings
+
 
 ```elisp
 ;;; package --- Summary
